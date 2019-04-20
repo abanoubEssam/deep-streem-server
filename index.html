@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/deepstream.io-client-js/2.1.1/deepstream.js"></script>
+
+</head>
+
+<body>
+
+    <button onclick="doo()">asd</button>
+    <script>
+        var ds = deepstream("192.168.1.5:6020");
+        ds.login();
+        var r = ds.record.getList('employees');
+
+           
+//   r.delete();
+        // r.subscribe(value => {
+        //     console.log(value)
+        // }, false) ;
+        
+        r.on('entry-added',(value) => console.log(value) );
+
+        function doo(){
+            r.addEntry('employees/abanoub');
+        }
+    </script>
+</body>
+
+</html>
